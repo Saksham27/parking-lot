@@ -29,7 +29,7 @@ namespace ParkingLot.CL.Model
             /// Gets or sets Data
             /// </summary>
             [DataMember(Name = "Data")]
-            public T Data { get; set; }
+            public List<T> Data { get; set; }
         }
         #endregion
   

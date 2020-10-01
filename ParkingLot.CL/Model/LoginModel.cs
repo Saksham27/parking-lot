@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ParkingLot.CL.Model
 {
-    class LoginModel
+    public class LoginModel
     {
         [Required(ErrorMessage = "Username Is Required")]
         public string UserName { get; set; }

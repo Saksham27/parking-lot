@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ParkingLot.CL.Model
 {
-    class ShowUserInformation
+    public class ShowUserInformation
     {
         [Required(ErrorMessage = "Employee Name Is Required")]
         [System.ComponentModel.DataAnnotations.RegularExpression("^[A-Z][a-zA-Z]{3,15}$", ErrorMessage = "First Name is not valid")]
@@ -22,13 +22,16 @@ namespace ParkingLot.CL.Model
         [RegularExpression("^[A-Z][a-zA-Z]{3,15}$", ErrorMessage = "Driver Category is not valid")]
         public string UserRole { get; set; }
 
+        [Required(ErrorMessage = "Username Is Required")]
+        public string UserName { get; set; }
+
         [Required(ErrorMessage = "Disability status Is Required")]
         public bool Handicapped { get; set; }
 
-        [Required(ErrorMessage = "Username Is Required")]
-        public string Username { get; set; }
- 
-        public DateTime RegistationDate { get; set; }
+        public string RegistationDate { get; set; }
+
+        public string LastUpdated { get; set; }
+
 
     }
 }

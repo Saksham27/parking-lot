@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace ParkingLot.CL
+namespace ParkingLot.CL.Model
 {
     [DataContract]
     public class UserModel
@@ -41,12 +42,5 @@ namespace ParkingLot.CL
         [RegularExpression("^.{8,15}$", ErrorMessage = "Password Length should be between 8 to 15")]
         public string Password { get; set; }
 
-        //Create date 
-        [DataMember(Name = "RegistationDate")]
-        public DateTime RegistationDate { get; set; } = DateTime.Now;
-
-        //Modified Date
-        [DataMember(Name = "ModifiedDate")]
-        public DateTime ModifiedDate { get; set; }
     }
 }
