@@ -34,6 +34,8 @@ namespace ParkingLot
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddTransient<IUserRL, UserRL>();
             services.AddTransient<IUserBL, UserBL>();
+            services.AddTransient<IParkingRL, ParkingRL>();
+            services.AddTransient<IParkingBL, ParkingBL>();
 
             services.AddSwaggerGen(c =>
             {

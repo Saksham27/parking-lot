@@ -7,6 +7,9 @@ namespace ParkingLot.CL.Model
 {
     public class ShowUserInformation
     {
+        [Required(ErrorMessage = "Id Is Required")]
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "Employee Name Is Required")]
         [System.ComponentModel.DataAnnotations.RegularExpression("^[A-Z][a-zA-Z]{3,15}$", ErrorMessage = "First Name is not valid")]
         public string FirstName { get; set; }
@@ -17,6 +20,9 @@ namespace ParkingLot.CL.Model
         [Required(ErrorMessage = "EmailID Is Required")]
         [RegularExpression("^[a-zA-Z0-9]{1,}([.]?[-]?[+]?[a-zA-Z0-9]{1,})?[@]{1}[a-zA-Z0-9]{1,}[.]{1}[a-z]{2,3}([.]?[a-z]{2})?$", ErrorMessage = "E-mail is not valid")]
         public string EmailID { get; set; }
+
+        [Required(ErrorMessage = "Address Is Required")]
+        public string Address { get; set; }
 
         [Required(ErrorMessage = "UserRole Is Required")]
         [RegularExpression("^[A-Z][a-zA-Z]{3,15}$", ErrorMessage = "Driver Category is not valid")]
