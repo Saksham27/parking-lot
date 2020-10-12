@@ -53,10 +53,11 @@ namespace ParkingLot.RL.Services
                         FirstName = reader.GetString(1),
                         LastName = reader.GetString(2),
                         EmailID = reader.GetString(3),
-                        UserName = reader.GetString(4),
-                        UserRole = reader.GetString(5),
-                        Handicapped = reader.GetBoolean(6),
-                        RegistationDate = reader.GetDateTime(7).ToString()
+                        Address = reader.GetString(4),
+                        UserName = reader.GetString(5),
+                        UserRole = reader.GetString(6),
+                        Handicapped = reader.GetBoolean(7),
+                        RegistationDate = reader.GetDateTime(8).ToString()
                         
                     };
                     if(reader.IsDBNull(8) == false)
@@ -89,6 +90,7 @@ namespace ParkingLot.RL.Services
                 command.Parameters.AddWithValue("@FirstName", data.FirstName);
                 command.Parameters.AddWithValue("@LastName", data.LastName);
                 command.Parameters.AddWithValue("@Email", data.EmailID);
+                command.Parameters.AddWithValue("@Address", data.Address);
                 command.Parameters.AddWithValue("@UserName", data.UserName);
                 command.Parameters.AddWithValue("@Password", encryptedPassword);
                 command.Parameters.AddWithValue("@UserRole", data.UserRole);
@@ -164,7 +166,12 @@ namespace ParkingLot.RL.Services
                     command.Parameters.AddWithValue("@Email", data.EmailID);
 
                 }
-                if(data.UserName != null)
+                if (data.Address != null)
+                {
+                    command.Parameters.AddWithValue("@Address", data.Address);
+
+                }
+                if (data.UserName != null)
                 {
                     command.Parameters.AddWithValue("@UserName", data.UserName);
                 }
