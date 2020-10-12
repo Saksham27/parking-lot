@@ -11,11 +11,12 @@ namespace ParkingLot.CL.Model
     public class UserModel
     {
         [DataMember(Name = "FirstName")]
-        [Required(ErrorMessage = "Employee Name Is Required")]
+        [Required(ErrorMessage = "First Name Is Required")]
         [RegularExpression("^[A-Z][a-zA-Z]{3,15}$", ErrorMessage = "First Name is not valid")]
         public string FirstName { get; set; }
 
         [DataMember(Name = "LastName")]
+        [Required(ErrorMessage = "Last Name Is Required")]
         [RegularExpression("^[A-Z][a-zA-Z]{3,15}$", ErrorMessage = "Last Name is not valid")]
         public string LastName { get; set; }
 
@@ -23,6 +24,10 @@ namespace ParkingLot.CL.Model
         [Required(ErrorMessage = "EmailID Is Required")]
         [RegularExpression("^[a-zA-Z0-9]{1,}([.]?[-]?[+]?[a-zA-Z0-9]{1,})?[@]{1}[a-zA-Z0-9]{1,}[.]{1}[a-z]{2,3}([.]?[a-z]{2})?$", ErrorMessage = "E-mail is not valid")]
         public string EmailID { get; set; }
+
+        [DataMember(Name = "Address")]
+        [Required(ErrorMessage = "Address Is Required")]
+        public string Address { get; set; }
 
         [DataMember(Name = "UserRole")]
         [Required(ErrorMessage = "UserRole Is Required")]
