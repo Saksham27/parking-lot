@@ -20,7 +20,7 @@ namespace ParkingLot.CL.Model
             public bool Status { get; set; }
 
             /// <summary>
-            /// Gets or sets Message
+            /// Gets or sets MessageC:\Users\Saksham\source\repos\ParkingLot\ParkingLot.CL\Model\ResponseMessage.cs
             /// </summary>
             [DataMember(Name = "Message")]
             public string Message { get; set; }
@@ -29,7 +29,7 @@ namespace ParkingLot.CL.Model
             /// Gets or sets Data
             /// </summary>
             [DataMember(Name = "Data")]
-            public List<T> Data { get; set; }
+            public dynamic Data { get; set; }
         }
         #endregion
   
