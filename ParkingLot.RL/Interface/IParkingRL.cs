@@ -10,5 +10,9 @@ namespace ParkingLot.RL.Interface
     {
         Tuple<string,ParkingTicket> ParkVehicle(ParkVehicleModel vehcileDetails);
         Tuple<string,ParkingBill> UnparkVehicle(int ticketId);
+        List<LocateVehicleModel> FindVehiclesByColor(string color);
+        List<LocateVehicleModel> FindVehiclesByBrand(string brand);
+        List<LocateVehicleModel> FindVehiclesByNumberPlate(string vehicleNumber);
+
     }
 }
