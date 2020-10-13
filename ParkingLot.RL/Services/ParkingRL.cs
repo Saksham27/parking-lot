@@ -505,7 +505,60 @@ namespace ParkingLot.RL.Services
 
         public List<LocateVehicleModel> FindVehiclesByNumberPlate(string vehicleNumber)
         {
-            throw new NotImplementedException();
+            SqlConnection connection = DatabaseConnection();
+            try
+            {
+                List<LocateVehicleModel> vehicleList = new List<LocateVehicleModel>();
+                SqlCommand command = StoredProcedureConnection("spFindVehiclesByNumberPlate", connection);
+                command.Parameters.AddWithValue("@vehicleNumber", vehicleNumber);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    LocateVehicleModel vehicleDetails = new LocateVehicleModel
+                    {
+                        VehicleNumber = reader.GetString(0),
+                        VehicleBrand = reader.GetString(1),
+                        VehicleColor = reader.GetString(2),
+                        ParkingSlot = reader.GetString(3),
+                        ParkingStatus = reader.GetString(4),
+
+                        FirstName = reader.GetString(7),
+                        LastName = reader.GetString(8),
+                        UserName = reader.GetString(9),
+                        EmailID = reader.GetString(10),
+                        Address = reader.GetString(11),
+                        UserRole = reader.GetString(12),
+                        Handicapped = reader.GetBoolean(13),
+
+                    };
+                    if (reader.IsDBNull(5) == false)
+                    {
+                        vehicleDetails.EntryTime = reader.GetDateTime(5).ToString();
+                    }
+                    if (reader.IsDBNull(6) == false)
+                    {
+                        vehicleDetails.ExitTime = reader.GetDateTime(6).ToString();
+                    }
+                    if (reader.IsDBNull(14) == false)
+                    {
+                        vehicleDetails.RegistationDate = reader.GetDateTime(14).ToString();
+                    }
+
+                    vehicleList.Add(vehicleDetails);
+                }
+                return vehicleList;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                connection.Close();
+
+            }
         }
     }
 }
