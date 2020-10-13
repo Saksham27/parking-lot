@@ -16,34 +16,6 @@ namespace ParkingLot.BL.Services
             this.parkingRepository = parkingRepo;
         }
 
-        public ResponseMessage<List<LocateVehicleModel>> FindVehiclesByColor(string color)
-        {
-            ResponseMessage<List<LocateVehicleModel>> response = new ResponseMessage<List<LocateVehicleModel>>();
-            try
-            {
-                List<LocateVehicleModel> locateVehicleResponse = parkingRepository.FindVehiclesByColor(color);
-                if (locateVehicleResponse.Count != 0)
-                {
-                    response.Status = true;
-                    response.Message = "Here are the details of vehicles whose color is "+color ;
-                    response.Data = locateVehicleResponse;
-                }
-                else
-                {
-                    response.Status = false;
-                    response.Message = "there are no vehicles of color "+color+" found in parking lot" ;
-                    response.Data = null;
-                }
-            }
-            catch (Exception exception)
-            {
-                response.Status = false;
-                response.Message = "Server error. Error : " + exception.Message;
-                response.Data = null;
-            }
-            return response;
-        }
-
         public ResponseMessage<List<LocateVehicleModel>> FindVehiclesByBrand(string brand)
         {
             ResponseMessage<List<LocateVehicleModel>> response = new ResponseMessage<List<LocateVehicleModel>>();
@@ -72,22 +44,22 @@ namespace ParkingLot.BL.Services
             return response;
         }
 
-        public ResponseMessage<List<LocateVehicleModel>> FindVehiclesByNumberPlate(string vehicleNumber)
+        public ResponseMessage<List<LocateVehicleModel>> FindVehiclesByColor(string color)
         {
             ResponseMessage<List<LocateVehicleModel>> response = new ResponseMessage<List<LocateVehicleModel>>();
             try
             {
-                List<LocateVehicleModel> locateVehicleResponse = parkingRepository.FindVehiclesByNumberPlate(vehicleNumber);
+                List<LocateVehicleModel> locateVehicleResponse = parkingRepository.FindVehiclesByColor(color);
                 if (locateVehicleResponse.Count != 0)
                 {
                     response.Status = true;
-                    response.Message = "Here are the details of vehicle whose number is " + vehicleNumber;
+                    response.Message = "Here are the details of vehicles whose color is "+color ;
                     response.Data = locateVehicleResponse;
                 }
                 else
                 {
                     response.Status = false;
-                    response.Message = "there is no vehicle of number " + vehicleNumber + " found in parking lot";
+                    response.Message = "there are no vehicles of color "+color+" found in parking lot" ;
                     response.Data = null;
                 }
             }
@@ -98,6 +70,11 @@ namespace ParkingLot.BL.Services
                 response.Data = null;
             }
             return response;
+        }
+
+        public ResponseMessage<List<LocateVehicleModel>> FindVehiclesByNumberPlate(string vehicleNumber)
+        {
+            throw new NotImplementedException();
         }
 
         public ResponseMessage<ParkingTicket> ParkVehicle(ParkVehicleModel vehicleDetails)
