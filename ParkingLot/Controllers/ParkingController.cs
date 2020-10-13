@@ -71,5 +71,85 @@ namespace ParkingLot.Controllers
             }
 
         }
+
+        [HttpGet]
+        [Route("FindVehiclesByColor")]
+        public ActionResult<IEnumerable<string>> FindVehiclesByColor(string color)
+        {
+            ResponseMessage<List<LocateVehicleModel>> response;
+
+            try
+            {
+
+                response = parkingBusinessLayer.FindVehiclesByColor(color);
+
+                if (response.Status == true)
+                {
+                    return Ok(new { response.Status, response.Message, response.Data });
+                }
+                else
+                {
+                    return BadRequest(new { response.Status, response.Message });
+                }
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(new { error = exception.Message });
+            }
+        }
+
+        [HttpGet]
+        [Route("FindVehiclesByBrand")]
+        public ActionResult<IEnumerable<string>> FindVehiclesByBrand(string brand)
+        {
+            ResponseMessage<List<LocateVehicleModel>> response;
+
+            try
+            {
+
+                response = parkingBusinessLayer.FindVehiclesByBrand(brand);
+
+                if (response.Status == true)
+                {
+                    return Ok(new { response.Status, response.Message, response.Data });
+                }
+                else
+                {
+                    return BadRequest(new { response.Status, response.Message });
+                }
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(new { error = exception.Message });
+            }
+        }
+
+        [HttpGet]
+        [Route("FindVehiclesByNumberPlate")]
+        public ActionResult<IEnumerable<string>> FindVehiclesByNumberPlate(string vehicleNumber)
+        {
+            ResponseMessage<List<LocateVehicleModel>> response;
+
+            try
+            {
+
+                response = parkingBusinessLayer.FindVehiclesByNumberPlate(vehicleNumber);
+
+                if (response.Status == true)
+                {
+                    return Ok(new { response.Status, response.Message, response.Data });
+                }
+                else
+                {
+                    return BadRequest(new { response.Status, response.Message });
+                }
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(new { error = exception.Message });
+            }
+        }
     }
+
+    
 }
