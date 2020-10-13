@@ -9,5 +9,9 @@ namespace ParkingLot.BL.Interface
     {
         ResponseMessage<ParkingTicket> ParkVehicle(ParkVehicleModel vehicleDetails);
         ResponseMessage<ParkingBill> UnparkVehicle(int ticketId);
+        ResponseMessage<List<LocateVehicleModel>> FindVehiclesByColor(string color);
+        ResponseMessage<List<LocateVehicleModel>> FindVehiclesByBrand(string brand);
+        ResponseMessage<List<LocateVehicleModel>> FindVehiclesByNumberPlate(string vehicleNumber);
+
     }
 }
