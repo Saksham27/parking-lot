@@ -74,7 +74,30 @@ namespace ParkingLot.BL.Services
 
         public ResponseMessage<List<LocateVehicleModel>> FindVehiclesByNumberPlate(string vehicleNumber)
         {
-            throw new NotImplementedException();
+            ResponseMessage<List<LocateVehicleModel>> response = new ResponseMessage<List<LocateVehicleModel>>();
+            try
+            {
+                List<LocateVehicleModel> locateVehicleResponse = parkingRepository.FindVehiclesByNumberPlate(vehicleNumber);
+                if (locateVehicleResponse.Count != 0)
+                {
+                    response.Status = true;
+                    response.Message = "Here are the details of vehicle whose number is " + vehicleNumber;
+                    response.Data = locateVehicleResponse;
+                }
+                else
+                {
+                    response.Status = false;
+                    response.Message = "there is no vehicle of number " + vehicleNumber + " found in parking lot";
+                    response.Data = null;
+                }
+            }
+            catch (Exception exception)
+            {
+                response.Status = false;
+                response.Message = "Server error. Error : " + exception.Message;
+                response.Data = null;
+            }
+            return response;
         }
 
         public ResponseMessage<ParkingTicket> ParkVehicle(ParkVehicleModel vehicleDetails)
