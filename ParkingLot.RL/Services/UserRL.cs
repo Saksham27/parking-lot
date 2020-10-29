@@ -121,7 +121,7 @@ namespace ParkingLot.RL.Services
             }
         }
 
-        public int LoginUser(LoginModel data)
+        public ShowUserInformation LoginUser(LoginModel data)
         {
             SqlConnection connection = DatabaseConnection();
             try
@@ -131,8 +131,27 @@ namespace ParkingLot.RL.Services
                 command.Parameters.Add("@Password", SqlDbType.VarChar, 50).Value = PasswordEncryptDecrypt.EncodePasswordToBase64(data.Password);
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
-                reader.Read();
-                return (int)reader[0];
+                
+                if(reader.Read() == false)
+                {
+                    return null;
+                }
+                else
+                {
+                    return new ShowUserInformation
+                    {
+                        Id = reader.GetInt32(0),
+                        FirstName = reader.GetString(1),
+                        LastName = reader.GetString(2),
+                        EmailID = reader.GetString(3),
+                        Address = reader.GetString(4),
+                        UserName = reader.GetString(5),
+                        UserRole = reader.GetString(7),
+                        Handicapped = reader.GetBoolean(8),
+                        RegistationDate = reader.GetDateTime(9).ToString()
+                    };
+                }
+             
             }
             catch (Exception exception)
             {

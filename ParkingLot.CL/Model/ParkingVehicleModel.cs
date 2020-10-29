@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ParkingLot.CL.Model
 {
-    class ParkingVehicleModel
+    public class ParkingVehicleModel
     {
         [DataMember(Name = "VehicleOwnerId")]
         [Required(ErrorMessage = "Vehicle Owner Id Is Required")]

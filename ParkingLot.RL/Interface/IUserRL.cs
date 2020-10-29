@@ -10,7 +10,7 @@ namespace ParkingLot.RL.Interface
     {
         int RegisterUser(UserModel data);
 
-        int LoginUser(LoginModel data);
+        ShowUserInformation LoginUser(LoginModel data);
 
         int UpdateUser(UpdateUserInformation data, int id);
 

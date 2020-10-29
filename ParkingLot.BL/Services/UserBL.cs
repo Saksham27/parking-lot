@@ -25,18 +25,18 @@ namespace ParkingLot.BL.Services
             try
             {
 
-                int loginStatus = userRepository.LoginUser(data);
-                if (loginStatus > 0)
+                ShowUserInformation loggedUserDetails = userRepository.LoginUser(data);
+                if (loggedUserDetails != null)
                 {
                     response.Status = true;
                     response.Message = "Login successful";
-                    response.Data = null;
+                    response.Data = loggedUserDetails;
                 }
                 else
                 {
                     response.Status = false;
                     response.Message = "Login failed. Please enter correct username and password";
-                    response.Data = null;
+                    response.Data = loggedUserDetails;
                 }
             }
             catch (Exception exception)
@@ -165,5 +165,7 @@ namespace ParkingLot.BL.Services
             }
             return response;
         }
+
+        
     }
 }
